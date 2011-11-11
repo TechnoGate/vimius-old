@@ -18,6 +18,11 @@ describe Submodules do
           "group" => "tools",
           "dependencies" => ["tlib"],
         },
+        "github" => {
+          "path"  => "vimius/vim/tools/github",
+          "group" => "tools",
+          "dependencies" => ["tlib", "pathogen"],
+        },
       },
     }
   end
@@ -57,6 +62,14 @@ describe Submodules do
     end
   end
 
+  describe "#dependencies" do
+    it {should respond_to :dependencies}
+
+    it "should return tlib and pathogen as dependencies of command-t" do
+      subject.send(:dependencies, 'command-t').should == ["pathogen", "tlib"]
+    end
+  end
+
   describe "#submodules" do
     it { should respond_to :submodules }
 
@@ -75,7 +88,20 @@ describe Submodules do
     it { should respond_to :submodule }
 
     it "should return the correct module from the submodules hash" do
-      subject.submodule("pathogen").should == submodules["submodules"]["pathogen"]
+      subject.submodule("pathogen").first.should == submodules["submodules"]["pathogen"].merge("name" => "pathogen")
+    end
+
+    it "should return the name with the submodule" do
+      subject.submodule("pathogen").first["name"].should == "pathogen"
+    end
+
+    it "should return all dependencies when getting the module command-t" do
+      subject.submodule("command-t").should include submodules["submodules"]["tlib"].merge("name" => "tlib")
+      subject.submodule("command-t").should include submodules["submodules"]["pathogen"].merge("name" => "pathogen")
+    end
+
+    it "should not include the same dependency twice" do
+      subject.submodule("github").select { |c| c["name"] == "pathogen"}.size.should == 1
     end
   end
 end

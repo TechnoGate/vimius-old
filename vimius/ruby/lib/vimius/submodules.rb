@@ -14,7 +14,13 @@ module Vimius
     #
     # @return [Array]
     def submodule(name)
-      submodules["submodules"][name.to_s]
+      res = []
+      res << submodules["submodules"][name.to_s].merge("name" => name.to_s)
+      dependencies(name).each do |dependency|
+        res << submodule(dependency)
+      end
+
+      res.flatten.uniq
     end
 
     protected
@@ -35,6 +41,23 @@ module Vimius
         "Not valid YAML file: It doesn't contain submodules root key." unless submodules.has_key?("submodules")
 
       submodules
+    end
+
+    # Return a list of all dependencies of a submodule (recursive)
+    #
+    # @param [String] name
+    # @return [Array]
+    def dependencies(name)
+      dependencies = []
+      submodule = submodules["submodules"][name.to_s]
+      if submodule.has_key?("dependencies")
+        submodule["dependencies"].each do |dependency|
+          dependencies << dependency
+          dependencies << dependencies(dependency)
+        end
+      end
+
+      dependencies.flatten.uniq.sort
     end
   end
 end
