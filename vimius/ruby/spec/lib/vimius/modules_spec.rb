@@ -35,5 +35,20 @@ describe Modules do
 
       -> { subject.send :parse_modules_yaml_file }.should raise_error ModulesNotValidError
     end
+
+    it "should handle the case where Psych returns nil." do
+      Psych.stubs(:parse_file).returns(nil)
+
+      -> { subject.send :parse_modules_yaml_file }.should raise_error ModulesNotValidError
+    end
+
+    it "should handle the case where :modules key does not exist" do
+      config = {}
+      yaml = mock
+      yaml.stubs(:to_ruby).returns(config)
+      Psych.stubs(:parse_file).returns(yaml)
+
+      -> { subject.send :parse_modules_yaml_file }.should raise_error ModulesNotValidError
+    end
   end
 end
