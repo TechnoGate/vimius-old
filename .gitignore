@@ -1,8 +1,10 @@
+# Vimius
+Gemfile.lock
+
 # ViM files
 _backup
 _temp
 .netrwhist
-
 
 # Plugins without git-mirror
 watchtower.vim

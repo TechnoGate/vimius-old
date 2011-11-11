@@ -2,12 +2,14 @@ require 'rake'
 require 'open-uri'
 
 module Vimius
-  include Rake::DSL
+  module Tasks
+    include Rake::DSL
 
-  def self.included(base)
-    # Load all plugin installation tasks
-    Dir["#{vim_path}/*/tasks/**.rake"].each do |f|
-      base.send :import, f
+    def self.included(base)
+      # Load all plugin installation tasks
+      Dir["#{vim_path}/**/tasks/**.rake"].each do |f|
+        base.send :import, f
+      end
     end
   end
 

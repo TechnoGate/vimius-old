@@ -1,8 +1,8 @@
-ROOT_PATH = File.expand_path(File.join(File.dirname(__FILE__)))
-$: << File.join(ROOT_PATH, 'vimius', 'ruby')
+$: << File.expand_path(File.join(File.dirname(__FILE__), 'vimius', 'ruby', 'lib'))
 
 require 'vimius'
 include Vimius
+include Vimius::Tasks
 
 desc "link ViM configuration files."
 task :link_vim_conf_files do

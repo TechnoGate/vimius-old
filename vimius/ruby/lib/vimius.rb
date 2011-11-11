@@ -1,3 +1,8 @@
+ROOT_PATH = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..'))
+VIMIUS_PATH = File.join ROOT_PATH, 'vimius'
+VIMIUS_VIM_PATH = File.join VIMIUS_PATH, 'vim'
+VIMIUS_RUBY_PATH = File.join VIMIUS_PATH, 'ruby'
+
 module Vimius
   # Return the root path
   #
@@ -10,21 +15,21 @@ module Vimius
   #
   # @return [String] The absolute path to Vimius distribution
   def vimius_path
-    File.join ROOT_PATH, 'vimius'
+    VIMIUS_PATH
   end
 
   # Return the vim's path
   #
   # @return [String] The absolute path to ViM files
   def vim_path
-    File.join vimius_path, 'vim'
+    VIMIUS_VIM_PATH
   end
 
   # Return the ruby's path
   #
   # @return [String] The absolute path to Ruby files
   def ruby_path
-    File.join vimius_path, 'ruby'
+    VIMIUS_RUBY_PATH
   end
 
   # Expand the path of a given file
@@ -56,3 +61,4 @@ require 'vimius/vim'
 require 'vimius/gems'
 require 'vimius/github'
 require 'vimius/plugins'
+require 'vimius/modules'

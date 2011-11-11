@@ -3,7 +3,7 @@ module Vimius
   #
   # @return [Array] of submodules
   def submodules
-    `git submodule`.split("\n").collect { |s| s.split(" ")[1] }
+    @submodules ||= `git submodule`.split("\n").collect { |s| s.split(" ")[1] }
   end
 
   # Update a submodule
