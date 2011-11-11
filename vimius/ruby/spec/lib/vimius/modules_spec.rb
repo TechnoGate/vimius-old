@@ -58,5 +58,11 @@ describe Modules do
     it "should return modules" do
       subject.modules.should == modules
     end
+
+    it "should be cached" do
+      subject.modules.should == modules
+      Psych.stubs(:parse_file).returns(nil)
+      subject.modules.should == modules
+    end
   end
 end

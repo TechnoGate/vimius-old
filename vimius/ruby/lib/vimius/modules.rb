@@ -7,7 +7,7 @@ module Vimius
     #
     # @return [Hash]
     def modules
-      parse_modules_yaml_file
+      @modules ||= parse_modules_yaml_file
     end
 
     protected
