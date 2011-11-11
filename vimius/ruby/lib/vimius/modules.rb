@@ -3,7 +3,17 @@ module Vimius
 
     MODULES_FILE = File.join(VIMIUS_PATH, 'modules.yaml')
 
+    # Return the modules
+    #
+    # @return [Hash]
+    def modules
+      parse_modules_yaml_file
+    end
+
     protected
+    # Parse and return the modules yaml file
+    #
+    # @return [Hash]
     def parse_modules_yaml_file
       begin
         parsed_yaml = YAML.parse_file MODULES_FILE

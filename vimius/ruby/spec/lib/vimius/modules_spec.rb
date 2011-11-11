@@ -51,4 +51,12 @@ describe Modules do
       -> { subject.send :parse_modules_yaml_file }.should raise_error ModulesNotValidError
     end
   end
+
+  describe "#modules" do
+    it { should respond_to :modules }
+
+    it "should return modules" do
+      subject.modules.should == modules
+    end
+  end
 end
