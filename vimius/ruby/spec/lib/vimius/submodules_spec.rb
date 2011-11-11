@@ -104,4 +104,8 @@ describe Submodules do
       subject.submodule("github").select { |c| c["name"] == "pathogen"}.size.should == 1
     end
   end
+
+  describe "#active" do
+    it { should respond_to :active }
+  end
 end

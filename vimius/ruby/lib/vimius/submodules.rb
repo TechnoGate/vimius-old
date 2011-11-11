@@ -23,6 +23,13 @@ module Vimius
       res.flatten.uniq
     end
 
+    # Return an array of active submodules
+    #
+    # @return [Array]
+    def active
+
+    end
+
     protected
     # Parse and return the submodules yaml file
     #
