@@ -109,6 +109,14 @@ describe Submodules do
     end
   end
 
+  describe "#groups" do
+    it { should respond_to :groups }
+
+    it "should return core and tools " do
+      subject.groups.should == ["core", "tools"]
+    end
+  end
+
   describe "#active" do
     it { should respond_to :active }
   end

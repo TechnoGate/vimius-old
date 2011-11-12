@@ -29,6 +29,13 @@ module Vimius
 
     end
 
+    # Return all available groups
+    #
+    # @return [Array]
+    def groups
+      submodules.map { |k, v| v["group"] }.uniq.sort
+    end
+
     protected
     # Parse and return the submodules yaml file
     #
