@@ -74,13 +74,16 @@ describe Submodules do
     it { should respond_to :submodules }
 
     it "should return submodules" do
-      subject.submodules.should == submodules
+      subject.submodules.should == submodules["submodules"]
     end
 
     it "should be cached" do
-      subject.submodules.should == submodules
+      subject.submodules.should == submodules["submodules"]
       Psych.stubs(:parse_file).returns(nil)
-      subject.submodules.should == submodules
+      subject.submodules.should == submodules["submodules"]
+    end
+
+    it "should add the name for each submodule" do
     end
   end
 
