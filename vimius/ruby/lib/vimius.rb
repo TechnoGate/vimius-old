@@ -57,6 +57,7 @@ end
 
 require 'vimius/errors'
 require 'vimius/shell'
+require 'vimius/config'
 require 'vimius/git'
 require 'vimius/vim'
 require 'vimius/gems'
