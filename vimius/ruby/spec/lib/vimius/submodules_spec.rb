@@ -84,6 +84,7 @@ describe Submodules do
     end
 
     it "should add the name for each submodule" do
+      subject.submodules["pathogen"]["name"].should == "pathogen"
     end
   end
 

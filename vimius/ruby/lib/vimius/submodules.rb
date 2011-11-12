@@ -14,8 +14,7 @@ module Vimius
     #
     # @return [Array]
     def submodule(name)
-      res = []
-      res << submodules[name.to_s].merge("name" => name.to_s)
+      res = [submodules[name.to_s]]
       dependencies(name).each do |dependency|
         res << submodule(dependency)
       end
@@ -46,6 +45,11 @@ module Vimius
       submodules = parsed_yaml.to_ruby
       raise SubmodulesNotValidError,
         "Not valid YAML file: It doesn't contain submodules root key." unless submodules.has_key?("submodules")
+
+      # XXX: This is not ruby-ish
+      submodules["submodules"].each do |k, v|
+       submodules["submodules"][k].merge!("name" => k)
+      end
 
       submodules["submodules"]
     end
