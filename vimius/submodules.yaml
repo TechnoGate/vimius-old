@@ -1,5 +1,5 @@
 ---
-modules:
+submodules:
   pathogen:
     path: vimius/vim/core/pathogen
     group: core
