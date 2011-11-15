@@ -33,6 +33,9 @@ call vimius#add_group("core")
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+"" Set console color mode to 256 colors
+set t_Co=256
+
 ""
 "" Customizations
 ""
